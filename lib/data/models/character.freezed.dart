@@ -20,6 +20,7 @@ Character _$CharacterFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Character {
+  Info get info => throw _privateConstructorUsedError;
   List<Results> get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +34,9 @@ abstract class $CharacterCopyWith<$Res> {
   factory $CharacterCopyWith(Character value, $Res Function(Character) then) =
       _$CharacterCopyWithImpl<$Res, Character>;
   @useResult
-  $Res call({List<Results> results});
+  $Res call({Info info, List<Results> results});
+
+  $InfoCopyWith<$Res> get info;
 }
 
 /// @nodoc
@@ -49,14 +52,27 @@ class _$CharacterCopyWithImpl<$Res, $Val extends Character>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? info = null,
     Object? results = null,
   }) {
     return _then(_value.copyWith(
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as Info,
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Results>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InfoCopyWith<$Res> get info {
+    return $InfoCopyWith<$Res>(_value.info, (value) {
+      return _then(_value.copyWith(info: value) as $Val);
+    });
   }
 }
 
@@ -67,7 +83,10 @@ abstract class _$$_CharacterCopyWith<$Res> implements $CharacterCopyWith<$Res> {
       __$$_CharacterCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Results> results});
+  $Res call({Info info, List<Results> results});
+
+  @override
+  $InfoCopyWith<$Res> get info;
 }
 
 /// @nodoc
@@ -81,9 +100,14 @@ class __$$_CharacterCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? info = null,
     Object? results = null,
   }) {
     return _then(_$_Character(
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as Info,
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
@@ -95,12 +119,14 @@ class __$$_CharacterCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Character with DiagnosticableTreeMixin implements _Character {
-  const _$_Character({required final List<Results> results})
+  const _$_Character({required this.info, required final List<Results> results})
       : _results = results;
 
   factory _$_Character.fromJson(Map<String, dynamic> json) =>
       _$$_CharacterFromJson(json);
 
+  @override
+  final Info info;
   final List<Results> _results;
   @override
   List<Results> get results {
@@ -111,7 +137,7 @@ class _$_Character with DiagnosticableTreeMixin implements _Character {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Character(results: $results)';
+    return 'Character(info: $info, results: $results)';
   }
 
   @override
@@ -119,6 +145,7 @@ class _$_Character with DiagnosticableTreeMixin implements _Character {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Character'))
+      ..add(DiagnosticsProperty('info', info))
       ..add(DiagnosticsProperty('results', results));
   }
 
@@ -127,13 +154,14 @@ class _$_Character with DiagnosticableTreeMixin implements _Character {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Character &&
+            (identical(other.info, info) || other.info == info) &&
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_results));
+  int get hashCode => Object.hash(
+      runtimeType, info, const DeepCollectionEquality().hash(_results));
 
   @JsonKey(ignore: true)
   @override
@@ -150,12 +178,15 @@ class _$_Character with DiagnosticableTreeMixin implements _Character {
 }
 
 abstract class _Character implements Character {
-  const factory _Character({required final List<Results> results}) =
-      _$_Character;
+  const factory _Character(
+      {required final Info info,
+      required final List<Results> results}) = _$_Character;
 
   factory _Character.fromJson(Map<String, dynamic> json) =
       _$_Character.fromJson;
 
+  @override
+  Info get info;
   @override
   List<Results> get results;
   @override
