@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/ui/widgets/custom_list_tile.dart';
 import '../../bloc/character_bloc.dart';
 import '../../data/models/character.dart';
+import 'CharacterDetail_pages.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -112,18 +113,20 @@ class _SearchPageState extends State<SearchPage> {
       itemBuilder: (context, index) {
         final result = currentResults[index];
         return Padding(
-            padding:
-                const EdgeInsets.only(right: 16, left: 16, top: 3, bottom: 3),
-            child: CustomListTile(result: result)
-
-            /*antes de crear custom_list_tile: ListTile. Después: CustomListTIle
-          ListTile(
-            title: Text(
-              result.name,
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),*/
-            );
+          padding:
+              const EdgeInsets.only(right: 16, left: 16, top: 3, bottom: 3),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CharacterDetail(result: result),
+                ),
+              );
+            },
+            child: CustomListTile(result: result),
+          ),
+        );
       },
     );
   }
