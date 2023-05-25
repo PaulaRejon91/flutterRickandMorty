@@ -1,10 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/ui/pages/search_page.dart';
-
 import '../../bloc/character_bloc.dart';
-import '../../data/repositories/characterRepo.dart';
+import '../../data/repositories/Repository.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key, required this.title});

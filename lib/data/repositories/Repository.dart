@@ -15,3 +15,17 @@ class CharacterRepo {
     }
   }
 }
+
+class OriginRepo {
+  final url = 'https://rickandmortyapi.com/api/character';
+  Future<Character> getOrigin(int page, String origin) async {
+    try {
+      var response =
+          await http.get(Uri.parse(url + '?page=$page&origin=$origin'));
+      var jsonResult = json.decode(response.body);
+      return Character.fromJson(jsonResult);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+}

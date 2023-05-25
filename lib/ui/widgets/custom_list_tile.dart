@@ -1,8 +1,8 @@
-//custoLisTile: widget personalizado que se utiliza para representar una entrada en una lista con un diseño específico.
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:rickandmorty/data/models/character.dart';
+import 'package:rickandmorty/ui/widgets/character_fav.dart';
 import 'package:rickandmorty/ui/widgets/character_status.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -126,6 +126,8 @@ class CustomListTile extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            const SizedBox(width: 20),
+                            const CharacterFav(),
                           ],
                         ),
                       ),

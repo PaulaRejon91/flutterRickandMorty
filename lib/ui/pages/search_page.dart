@@ -88,7 +88,6 @@ class _SearchPageState extends State<SearchPage> {
               return _currentResults.isNotEmpty
                   ? _customListView(_currentResults)
                   : const SizedBox();
-              // esto lo puse inicialmente para ver solo el texto que muestra la BBDD de la API (luego lo cambié por customlistview): ? Text('$_currentResults')
             },
             error: () => const Text('Nothing found...'),
           ),
