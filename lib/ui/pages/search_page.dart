@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/ui/widgets/custom_list_tile.dart';
 import '../../bloc/character_bloc.dart';
 import '../../data/models/character.dart';
-import 'CharacterDetail_pages.dart';
+import 'characterDetail_pages.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
