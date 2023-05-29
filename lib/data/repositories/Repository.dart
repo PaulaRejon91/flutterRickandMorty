@@ -1,29 +1,28 @@
+// ignore: file_names
 import 'dart:convert';
-
 import '../models/character.dart';
 import 'package:http/http.dart' as http;
+import '../models/episodeList.dart';
 
-class CharacterRepo {
-  final url = 'https://rickandmortyapi.com/api/character';
-  Future<Character> getCharacter(int page, String name) async {
+class Repository {
+  final url = 'https://rickandmortyapi.com/api/';
+  Future<Character> getCharacterByName(int page, String name) async {
     try {
-      var response = await http.get(Uri.parse(url + '?page=$page&name=$name'));
+      var response =
+          await http.get(Uri.parse('${url}character?page=$page&name=$name'));
       var jsonResult = json.decode(response.body);
       return Character.fromJson(jsonResult);
     } catch (e) {
       throw Exception(e.toString());
     }
   }
-}
 
-class OriginRepo {
-  final url = 'https://rickandmortyapi.com/api/character';
-  Future<Character> getOrigin(int page, String origin) async {
+  Future<EpisodeList> getCharactersBySeason(List<int> episodes) async {
     try {
       var response =
-          await http.get(Uri.parse(url + '?page=$page&origin=$origin'));
+          await http.get(Uri.parse('${url}episode/${episodes.join(",")}'));
       var jsonResult = json.decode(response.body);
-      return Character.fromJson(jsonResult);
+      return EpisodeList.fromJson({'episodeList': jsonResult});
     } catch (e) {
       throw Exception(e.toString());
     }

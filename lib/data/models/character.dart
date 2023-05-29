@@ -38,7 +38,7 @@ class Results with _$Results {
     required String species,
     required String gender,
     required String image,
-    // required String origin,
+    //required String origin,
   }) = _Results;
 
   factory Results.fromJson(Map<String, dynamic> json) =>

@@ -1,9 +1,10 @@
-import 'package:flutter/foundation.dart';
+// ignore_for_file: unused_field
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/ui/widgets/custom_list_tile.dart';
 import '../../bloc/character_bloc.dart';
 import '../../data/models/character.dart';
+import '../widgets/drop_down_button.dart';
 import 'characterDetail_pages.dart';
 
 class SearchPage extends StatefulWidget {
@@ -17,6 +18,7 @@ class _SearchPageState extends State<SearchPage> {
   late Character
       _currentCharacter; //para almacenar toda la info sobre el total de páginas y personajes y devolverá el tipo de personaje, es decir, nuestro modelo.
   List<Results> _currentResults = []; //almacena matriz de personajes
+
   int _currentPage = 1; //para la paginación
   String _currentSearchStr = '';
 
@@ -67,6 +69,13 @@ class _SearchPageState extends State<SearchPage> {
             },
           ),
         ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: DropDownButton(
+            selectedIndex: 0,
+          ),
+        ),
+
         //envuelvo con widget:
         Expanded(
           child: state.when(

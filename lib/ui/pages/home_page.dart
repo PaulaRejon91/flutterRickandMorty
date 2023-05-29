@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rickandmorty/bloc/episodeList_bloc.dart';
 import 'package:rickandmorty/ui/pages/search_page.dart';
 import '../../bloc/character_bloc.dart';
-import '../../data/repositories/Repository.dart';
+import '../../data/repositories/repository.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key, required this.title});
   final String title;
-  final repository = CharacterRepo();
+  final repository = Repository();
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,15 @@ class HomePage extends StatelessWidget {
           style: Theme.of(context).textTheme.displaySmall,
         ),
       ),
-      body: BlocProvider(
-        create: (context) => CharacterBloc(characterRepo: repository),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<CharacterBloc>(
+            create: (context) => CharacterBloc(characterRepo: repository),
+          ),
+          BlocProvider<EpisodeListBloc>(
+            create: (context) => EpisodeListBloc(episodeListRepo: repository),
+          ),
+        ],
         child: Container(
             decoration: const BoxDecoration(color: Colors.black87),
             child: const SearchPage()),
