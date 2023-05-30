@@ -12,27 +12,30 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black54,
-        centerTitle: true,
-        title: Text(
-          title,
-          style: Theme.of(context).textTheme.displaySmall,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CharacterBloc>(
+          create: (context) => CharacterBloc(characterRepo: repository),
         ),
-      ),
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider<CharacterBloc>(
-            create: (context) => CharacterBloc(characterRepo: repository),
+        BlocProvider<EpisodeListBloc>(
+          create: (context) => EpisodeListBloc(episodeListRepo: repository),
+        ),
+      ],
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black54,
+          centerTitle: true,
+          title: Text(
+            title,
+            style: Theme.of(context).textTheme.displaySmall,
           ),
-          BlocProvider<EpisodeListBloc>(
-            create: (context) => EpisodeListBloc(episodeListRepo: repository),
-          ),
-        ],
-        child: Container(
-            decoration: const BoxDecoration(color: Colors.black87),
-            child: const SearchPage()),
+        ),
+        body: const SearchPage(),
+
+        //Container(
+        //  decoration: const BoxDecoration(color: Colors.black87),
+
+        //const SearchPage()),
       ),
     );
   }
