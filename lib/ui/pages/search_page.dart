@@ -37,8 +37,8 @@ class _SearchPageState extends State<SearchPage> {
     final state = context.watch<CharacterBloc>().state;
 
     return Column(
-      //crossAxisAlignment: CrossAxisAlignment.center,
-      // mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
           padding:

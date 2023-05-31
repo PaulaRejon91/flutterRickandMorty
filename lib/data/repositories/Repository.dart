@@ -2,6 +2,7 @@
 import 'dart:convert';
 import '../models/character.dart';
 import 'package:http/http.dart' as http;
+import '../models/episode.dart';
 import '../models/episodeList.dart';
 
 class Repository {
@@ -22,7 +23,18 @@ class Repository {
       var response =
           await http.get(Uri.parse('${url}episode/${episodes.join(",")}'));
       var jsonResult = json.decode(response.body);
+      var episodeList = EpisodeList.fromJson({'episodeList': jsonResult});
       return EpisodeList.fromJson({'episodeList': jsonResult});
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<Episode> getEpisodeById(int id) async {
+    try {
+      var response = await http.get(Uri.parse('${url}episode/$id'));
+      var jsonResult = json.decode(response.body);
+      return Episode.fromJson(jsonResult);
     } catch (e) {
       throw Exception(e.toString());
     }

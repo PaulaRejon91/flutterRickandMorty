@@ -1,54 +1,96 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/episodeList_bloc.dart';
 import '../../data/models/episodeList.dart';
-import 'episode_detail_page.dart';
 
-class EpisodeListPage extends StatelessWidget {
-  final EpisodeList episodes;
+class EpisodeListPage extends StatefulWidget {
+  const EpisodeListPage({Key? key}) : super(key: key);
 
-  const EpisodeListPage({Key? key, required this.episodes}) : super(key: key);
+  @override
+  State<EpisodeListPage> createState() => _EpisodeListPageState();
+}
+
+class _EpisodeListPageState extends State<EpisodeListPage> {
+  late EpisodeList episodeList;
+
+  // @override
+  // void initState() {
+  //   if (episodeList.episodeList.isEmpty) {
+  //     context
+  //         .read<EpisodeListBloc>()
+  //         .add(EpisodeListEvent.fetch(episodeList: [1, 2]));
+  //   }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Episode List'),
-      ),
-      body: ListView.builder(
-        itemCount: episodes.episodeList.length,
-        itemBuilder: (context, index) {
-          final episodeNumber = index + 1;
-          return Card(
-            child: ListTile(
-              leading: const Icon(
-                Icons.abc,
-              ),
-              title: Text(
-                'Episode $episodeNumber',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              subtitle: const Text("name"),
-              onTap: () {
-                // Lógica cuando se toca un episodio
+    final state = context.watch<EpisodeListBloc>().state;
+    context
+        .read<EpisodeListBloc>()
+        .add(EpisodeListEvent.fetch(episodeList: [1, 2]));
 
-                /*final episodeDetail = episodes.episodeList[index];
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        EpisodeDetailPage(episodeDetail: episodeDetail),
-                  ),
-                );*/
-              },
-            ),
-          );
-        },
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          child: state.when(
+            loading: () {
+              return const Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(strokeWidth: 2),
+                    SizedBox(width: 10),
+                    Text('Loading...'),
+                  ],
+                ),
+              );
+            },
+            loaded: (episodeListLoaded) {
+              episodeList = episodeListLoaded;
+              return ListView.builder(
+                  itemCount: episodeList.episodeList.length,
+                  itemBuilder: (context, index) {
+                    final episodeNumber = index + 1;
+                    return Card(
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.abc,
+                          color: Colors.blue,
+                        ),
+                        title: Text(
+                          'Episode $episodeNumber',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        subtitle: const Text(
+                          'dESCRIPCION',
+                        ),
+                        onTap: () {
+                          // Lógica cuando se toca un episodio
+
+                          // final repository = Repository();
+                          // repository.getEpisodeById().then((episode) {
+                          //   Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) => EpisodeDetailPage(episode: episode),
+                          //     ),
+                          //   );
+                          // }).catchError((error) {});
+                        },
+                      ),
+                    );
+                  });
+            },
+            error: () => const Text('Nothing found...'),
+          ),
+        ),
+      ],
     );
   }
 }
