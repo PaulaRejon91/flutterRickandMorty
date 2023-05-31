@@ -5,7 +5,7 @@ import 'package:rickandmorty/ui/widgets/custom_list_tile.dart';
 import '../../bloc/character_bloc.dart';
 import '../../data/models/character.dart';
 import '../widgets/drop_down_button.dart';
-import 'characterDetail_pages.dart';
+import 'character_detail_pages.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -37,8 +37,8 @@ class _SearchPageState extends State<SearchPage> {
     final state = context.watch<CharacterBloc>().state;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
+      //crossAxisAlignment: CrossAxisAlignment.center,
+      // mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
           padding:
@@ -96,7 +96,9 @@ class _SearchPageState extends State<SearchPage> {
               _currentResults = _currentCharacter.results;
               return _currentResults.isNotEmpty
                   ? _customListView(_currentResults)
-                  : const SizedBox();
+                  : const SizedBox(
+                      height: 10,
+                    );
             },
             error: () => const Text('Nothing found...'),
           ),
@@ -125,6 +127,7 @@ class _SearchPageState extends State<SearchPage> {
               const EdgeInsets.only(right: 16, left: 16, top: 3, bottom: 3),
           child: GestureDetector(
             onTap: () {
+              //esto deberia ser un evento:
               Navigator.push(
                 context,
                 MaterialPageRoute(

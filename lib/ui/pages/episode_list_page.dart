@@ -1,10 +1,15 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
-class EpisodeListPage extends StatelessWidget {
-  final List<int> episodeList;
+import '../../bloc/episodeList_bloc.dart';
+import '../../data/models/episodeList.dart';
+import 'episode_detail_page.dart';
 
-  const EpisodeListPage({Key? key, required this.episodeList})
-      : super(key: key);
+class EpisodeListPage extends StatelessWidget {
+  final EpisodeList episodes;
+
+  const EpisodeListPage({Key? key, required this.episodes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +18,13 @@ class EpisodeListPage extends StatelessWidget {
         title: const Text('Episode List'),
       ),
       body: ListView.builder(
-        itemCount: episodeList.length,
+        itemCount: episodes.episodeList.length,
         itemBuilder: (context, index) {
-          final episodeNumber = episodeList[index];
+          final episodeNumber = index + 1;
           return Card(
             child: ListTile(
               leading: const Icon(
                 Icons.abc,
-                color: Colors.blue,
               ),
               title: Text(
                 'Episode $episodeNumber',
@@ -28,11 +32,18 @@ class EpisodeListPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              subtitle: const Text(
-                'dESCRIPCION',
-              ),
+              subtitle: const Text("name"),
               onTap: () {
                 // Lógica cuando se toca un episodio
+
+                /*final episodeDetail = episodes.episodeList[index];
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        EpisodeDetailPage(episodeDetail: episodeDetail),
+                  ),
+                );*/
               },
             ),
           );
