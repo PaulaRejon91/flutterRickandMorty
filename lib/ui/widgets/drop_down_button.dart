@@ -14,9 +14,8 @@ const List<String> list = <String>[
   'Season 5',
 ];
 
-final List<int> season1List = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //1 al 11
+final List<int> season1List = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]; //1 al 11
 final List<int> season2List = [
-  11,
   12,
   13,
   14,
@@ -25,22 +24,12 @@ final List<int> season2List = [
   17,
   18,
   19,
-  20
+  20,
+  21
 ]; //12 al 21
-final List<int> season3List = [
-  21,
-  22,
-  23,
-  24,
-  25,
-  26,
-  27,
-  28,
-  29,
-  30
-]; //22 al 31
+final List<int> season3List = [22, 23, 24, 25, 26, 27, 28, 29, 31]; //22 al 31
 final List<int> season4List = [
-  31,
+  32,
   32,
   33,
   34,
@@ -49,7 +38,7 @@ final List<int> season4List = [
   37,
   38,
   39,
-  40
+  41
 ]; //32 al 41
 final List<int> season5List = [
   41,
@@ -61,7 +50,7 @@ final List<int> season5List = [
   47,
   48,
   49,
-  50
+  51
 ]; //42 al 51
 
 class DropDownButton extends StatefulWidget {
@@ -75,6 +64,7 @@ class DropDownButton extends StatefulWidget {
 
 class _DropDownButtonState extends State<DropDownButton> {
   String dropdownValue = list.first;
+  late EpisodeList results;
 
   @override
   Widget build(BuildContext context) {
@@ -128,17 +118,40 @@ class _DropDownButtonState extends State<DropDownButton> {
                 .add(EpisodeListEvent.fetch(episodeList: season5List));
             break;
 
-          default:
-            // Lógica para casos adicionales, si es necesario
-            break;
-        }
-      },
-      items: list.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
+              default:
+                // Lógica para casos adicionales, si es necesario
+                break;
+            }
+          },
+          items: list.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
+        Expanded(
+          child: state.when(
+            loading: () {
+              return const Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(strokeWidth: 2),
+                    SizedBox(width: 10),
+                    Text('Loading...'),
+                  ],
+                ),
+              );
+            },
+            loaded: (episodeListLoaded) {
+              results = episodeListLoaded;
+              return EpisodeListPage(episodes: results);
+            },
+            error: () => const Text('Nothing found...'),
+          ),
+        ),
+      ],
     );
   }
 }
