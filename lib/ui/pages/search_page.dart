@@ -1,10 +1,10 @@
 // ignore_for_file: unused_field
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rickandmorty/ui/pages/episode_search_page.dart';
 import 'package:rickandmorty/ui/widgets/custom_list_tile.dart';
 import '../../bloc/character_bloc.dart';
 import '../../data/models/character.dart';
-import '../widgets/drop_down_button.dart';
 import 'character_detail_pages.dart';
 
 class SearchPage extends StatefulWidget {
@@ -37,8 +37,8 @@ class _SearchPageState extends State<SearchPage> {
     final state = context.watch<CharacterBloc>().state;
 
     return Column(
-      //crossAxisAlignment: CrossAxisAlignment.center,
-      // mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
           padding:
@@ -69,12 +69,12 @@ class _SearchPageState extends State<SearchPage> {
             },
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: DropDownButton(
-            selectedIndex: 0,
-          ),
-        ),
+        // const Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: 16),
+        //   child: DropDownButton(
+        //     selectedIndex: 0,
+        //   ),
+        // ),
 
         //envuelvo con widget:
         Expanded(
@@ -103,16 +103,18 @@ class _SearchPageState extends State<SearchPage> {
             error: () => const Text('Nothing found...'),
           ),
         ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const EpisodeSearchPage(),
+              ),
+            );
+          },
+          child: const Text('Go to Episode Main Page'),
+        ),
       ],
     );
-
-    /* return BlocBuilder(
-      builder: (context, state) {
-        if (state is CharacterStateLoading) {
-          //
-        } else if (state is CharacterStateLoaded) {}
-      },
-    );*/
   }
 
   Widget _customListView(List<Results> currentResults) {
