@@ -22,9 +22,11 @@ class Repository {
     try {
       var response =
           await http.get(Uri.parse('${url}episode?page=$page&name=$name'));
-      print(response);
+      print('1=${response.body}');
       var jsonResult = json.decode(response.body);
-      print(jsonResult);
+      print('2=${jsonResult}');
+      var response2 = Episode.fromJson(jsonResult);
+      print('3=${response2}');
       return Episode.fromJson(jsonResult);
     } catch (e) {
       print(e);

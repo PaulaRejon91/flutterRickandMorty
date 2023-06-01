@@ -1,7 +1,6 @@
 // ignore_for_file: unused_field
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rickandmorty/ui/pages/episode_main_page.dart';
 import '../../bloc/episode_bloc.dart';
 import '../../data/models/episode.dart';
 import '../widgets/episode_custom_list_tile.dart';

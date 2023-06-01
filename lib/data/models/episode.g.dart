@@ -36,7 +36,7 @@ Map<String, dynamic> _$$_InfoToJson(_$_Info instance) => <String, dynamic>{
 _$_Results _$$_ResultsFromJson(Map<String, dynamic> json) => _$_Results(
       id: json['id'] as int,
       name: json['name'] as String,
-      airDate: json['airDate'] as String,
+      airDate: json['air_date'] as String,
       episode: json['episode'] as String,
       characters: (json['characters'] as List<dynamic>)
           .map((e) => e as String)
