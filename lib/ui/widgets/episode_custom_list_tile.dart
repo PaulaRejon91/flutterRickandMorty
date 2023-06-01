@@ -54,7 +54,7 @@ class EpisodeCustomListTile extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Species: ',
+                                  'Name: ',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -90,7 +90,7 @@ class EpisodeCustomListTile extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Gender: ',
+                                  'Episode: ',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium

@@ -18,23 +18,27 @@ class Repository {
     }
   }
 
+  Future<Episode> getEpisode(int page, String name) async {
+    try {
+      var response =
+          await http.get(Uri.parse('${url}episode?page=$page&name=$name'));
+      print(response);
+      var jsonResult = json.decode(response.body);
+      print(jsonResult);
+      return Episode.fromJson(jsonResult);
+    } catch (e) {
+      print(e);
+      throw Exception(e.toString());
+    }
+  }
+
   Future<EpisodeList> getCharactersBySeason(List<int> episodes) async {
     try {
       var response =
           await http.get(Uri.parse('${url}episode/${episodes.join(",")}'));
       var jsonResult = json.decode(response.body);
-      var episodeList = EpisodeList.fromJson({'episodeList': jsonResult});
-      return EpisodeList.fromJson({'episodeList': jsonResult});
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
 
-  Future<Episode> getEpisodeById(int id) async {
-    try {
-      var response = await http.get(Uri.parse('${url}episode/$id'));
-      var jsonResult = json.decode(response.body);
-      return Episode.fromJson(jsonResult);
+      return EpisodeList.fromJson({'episodeList': jsonResult});
     } catch (e) {
       throw Exception(e.toString());
     }

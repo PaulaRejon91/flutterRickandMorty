@@ -20,13 +20,8 @@ Episode _$EpisodeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Episode {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get airDate => throw _privateConstructorUsedError;
-  String get episode => throw _privateConstructorUsedError;
-  List<String> get characters => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
-  DateTime get created => throw _privateConstructorUsedError;
+  Info get info => throw _privateConstructorUsedError;
+  List<Results> get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,6 +32,380 @@ mixin _$Episode {
 abstract class $EpisodeCopyWith<$Res> {
   factory $EpisodeCopyWith(Episode value, $Res Function(Episode) then) =
       _$EpisodeCopyWithImpl<$Res, Episode>;
+  @useResult
+  $Res call({Info info, List<Results> results});
+
+  $InfoCopyWith<$Res> get info;
+}
+
+/// @nodoc
+class _$EpisodeCopyWithImpl<$Res, $Val extends Episode>
+    implements $EpisodeCopyWith<$Res> {
+  _$EpisodeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? info = null,
+    Object? results = null,
+  }) {
+    return _then(_value.copyWith(
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as Info,
+      results: null == results
+          ? _value.results
+          : results // ignore: cast_nullable_to_non_nullable
+              as List<Results>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InfoCopyWith<$Res> get info {
+    return $InfoCopyWith<$Res>(_value.info, (value) {
+      return _then(_value.copyWith(info: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_EpisodeCopyWith<$Res> implements $EpisodeCopyWith<$Res> {
+  factory _$$_EpisodeCopyWith(
+          _$_Episode value, $Res Function(_$_Episode) then) =
+      __$$_EpisodeCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Info info, List<Results> results});
+
+  @override
+  $InfoCopyWith<$Res> get info;
+}
+
+/// @nodoc
+class __$$_EpisodeCopyWithImpl<$Res>
+    extends _$EpisodeCopyWithImpl<$Res, _$_Episode>
+    implements _$$_EpisodeCopyWith<$Res> {
+  __$$_EpisodeCopyWithImpl(_$_Episode _value, $Res Function(_$_Episode) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? info = null,
+    Object? results = null,
+  }) {
+    return _then(_$_Episode(
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as Info,
+      results: null == results
+          ? _value._results
+          : results // ignore: cast_nullable_to_non_nullable
+              as List<Results>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Episode with DiagnosticableTreeMixin implements _Episode {
+  const _$_Episode({required this.info, required final List<Results> results})
+      : _results = results;
+
+  factory _$_Episode.fromJson(Map<String, dynamic> json) =>
+      _$$_EpisodeFromJson(json);
+
+  @override
+  final Info info;
+  final List<Results> _results;
+  @override
+  List<Results> get results {
+    if (_results is EqualUnmodifiableListView) return _results;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_results);
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Episode(info: $info, results: $results)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Episode'))
+      ..add(DiagnosticsProperty('info', info))
+      ..add(DiagnosticsProperty('results', results));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Episode &&
+            (identical(other.info, info) || other.info == info) &&
+            const DeepCollectionEquality().equals(other._results, _results));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, info, const DeepCollectionEquality().hash(_results));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_EpisodeCopyWith<_$_Episode> get copyWith =>
+      __$$_EpisodeCopyWithImpl<_$_Episode>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_EpisodeToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Episode implements Episode {
+  const factory _Episode(
+      {required final Info info,
+      required final List<Results> results}) = _$_Episode;
+
+  factory _Episode.fromJson(Map<String, dynamic> json) = _$_Episode.fromJson;
+
+  @override
+  Info get info;
+  @override
+  List<Results> get results;
+  @override
+  @JsonKey(ignore: true)
+  _$$_EpisodeCopyWith<_$_Episode> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Info _$InfoFromJson(Map<String, dynamic> json) {
+  return _Info.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Info {
+  int get count => throw _privateConstructorUsedError;
+  int get pages => throw _privateConstructorUsedError;
+  String? get next => throw _privateConstructorUsedError;
+  String? get prev => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InfoCopyWith<Info> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InfoCopyWith<$Res> {
+  factory $InfoCopyWith(Info value, $Res Function(Info) then) =
+      _$InfoCopyWithImpl<$Res, Info>;
+  @useResult
+  $Res call({int count, int pages, String? next, String? prev});
+}
+
+/// @nodoc
+class _$InfoCopyWithImpl<$Res, $Val extends Info>
+    implements $InfoCopyWith<$Res> {
+  _$InfoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = null,
+    Object? pages = null,
+    Object? next = freezed,
+    Object? prev = freezed,
+  }) {
+    return _then(_value.copyWith(
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      pages: null == pages
+          ? _value.pages
+          : pages // ignore: cast_nullable_to_non_nullable
+              as int,
+      next: freezed == next
+          ? _value.next
+          : next // ignore: cast_nullable_to_non_nullable
+              as String?,
+      prev: freezed == prev
+          ? _value.prev
+          : prev // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_InfoCopyWith<$Res> implements $InfoCopyWith<$Res> {
+  factory _$$_InfoCopyWith(_$_Info value, $Res Function(_$_Info) then) =
+      __$$_InfoCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int count, int pages, String? next, String? prev});
+}
+
+/// @nodoc
+class __$$_InfoCopyWithImpl<$Res> extends _$InfoCopyWithImpl<$Res, _$_Info>
+    implements _$$_InfoCopyWith<$Res> {
+  __$$_InfoCopyWithImpl(_$_Info _value, $Res Function(_$_Info) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = null,
+    Object? pages = null,
+    Object? next = freezed,
+    Object? prev = freezed,
+  }) {
+    return _then(_$_Info(
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      pages: null == pages
+          ? _value.pages
+          : pages // ignore: cast_nullable_to_non_nullable
+              as int,
+      next: freezed == next
+          ? _value.next
+          : next // ignore: cast_nullable_to_non_nullable
+              as String?,
+      prev: freezed == prev
+          ? _value.prev
+          : prev // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Info with DiagnosticableTreeMixin implements _Info {
+  const _$_Info(
+      {required this.count, required this.pages, this.next, this.prev});
+
+  factory _$_Info.fromJson(Map<String, dynamic> json) => _$$_InfoFromJson(json);
+
+  @override
+  final int count;
+  @override
+  final int pages;
+  @override
+  final String? next;
+  @override
+  final String? prev;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Info(count: $count, pages: $pages, next: $next, prev: $prev)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Info'))
+      ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('pages', pages))
+      ..add(DiagnosticsProperty('next', next))
+      ..add(DiagnosticsProperty('prev', prev));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Info &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.pages, pages) || other.pages == pages) &&
+            (identical(other.next, next) || other.next == next) &&
+            (identical(other.prev, prev) || other.prev == prev));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, count, pages, next, prev);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_InfoCopyWith<_$_Info> get copyWith =>
+      __$$_InfoCopyWithImpl<_$_Info>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_InfoToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Info implements Info {
+  const factory _Info(
+      {required final int count,
+      required final int pages,
+      final String? next,
+      final String? prev}) = _$_Info;
+
+  factory _Info.fromJson(Map<String, dynamic> json) = _$_Info.fromJson;
+
+  @override
+  int get count;
+  @override
+  int get pages;
+  @override
+  String? get next;
+  @override
+  String? get prev;
+  @override
+  @JsonKey(ignore: true)
+  _$$_InfoCopyWith<_$_Info> get copyWith => throw _privateConstructorUsedError;
+}
+
+Results _$ResultsFromJson(Map<String, dynamic> json) {
+  return _Results.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Results {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get airDate => throw _privateConstructorUsedError;
+  String get episode => throw _privateConstructorUsedError;
+  List<String> get characters => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
+  DateTime get created => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ResultsCopyWith<Results> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ResultsCopyWith<$Res> {
+  factory $ResultsCopyWith(Results value, $Res Function(Results) then) =
+      _$ResultsCopyWithImpl<$Res, Results>;
   @useResult
   $Res call(
       {int id,
@@ -49,9 +418,9 @@ abstract class $EpisodeCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EpisodeCopyWithImpl<$Res, $Val extends Episode>
-    implements $EpisodeCopyWith<$Res> {
-  _$EpisodeCopyWithImpl(this._value, this._then);
+class _$ResultsCopyWithImpl<$Res, $Val extends Results>
+    implements $ResultsCopyWith<$Res> {
+  _$ResultsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -103,10 +472,10 @@ class _$EpisodeCopyWithImpl<$Res, $Val extends Episode>
 }
 
 /// @nodoc
-abstract class _$$_EpisodeCopyWith<$Res> implements $EpisodeCopyWith<$Res> {
-  factory _$$_EpisodeCopyWith(
-          _$_Episode value, $Res Function(_$_Episode) then) =
-      __$$_EpisodeCopyWithImpl<$Res>;
+abstract class _$$_ResultsCopyWith<$Res> implements $ResultsCopyWith<$Res> {
+  factory _$$_ResultsCopyWith(
+          _$_Results value, $Res Function(_$_Results) then) =
+      __$$_ResultsCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -120,10 +489,10 @@ abstract class _$$_EpisodeCopyWith<$Res> implements $EpisodeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_EpisodeCopyWithImpl<$Res>
-    extends _$EpisodeCopyWithImpl<$Res, _$_Episode>
-    implements _$$_EpisodeCopyWith<$Res> {
-  __$$_EpisodeCopyWithImpl(_$_Episode _value, $Res Function(_$_Episode) _then)
+class __$$_ResultsCopyWithImpl<$Res>
+    extends _$ResultsCopyWithImpl<$Res, _$_Results>
+    implements _$$_ResultsCopyWith<$Res> {
+  __$$_ResultsCopyWithImpl(_$_Results _value, $Res Function(_$_Results) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -137,7 +506,7 @@ class __$$_EpisodeCopyWithImpl<$Res>
     Object? url = null,
     Object? created = null,
   }) {
-    return _then(_$_Episode(
+    return _then(_$_Results(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -172,8 +541,8 @@ class __$$_EpisodeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Episode implements _Episode {
-  const _$_Episode(
+class _$_Results with DiagnosticableTreeMixin implements _Results {
+  const _$_Results(
       {required this.id,
       required this.name,
       required this.airDate,
@@ -183,8 +552,8 @@ class _$_Episode implements _Episode {
       required this.created})
       : _characters = characters;
 
-  factory _$_Episode.fromJson(Map<String, dynamic> json) =>
-      _$$_EpisodeFromJson(json);
+  factory _$_Results.fromJson(Map<String, dynamic> json) =>
+      _$$_ResultsFromJson(json);
 
   @override
   final int id;
@@ -208,15 +577,29 @@ class _$_Episode implements _Episode {
   final DateTime created;
 
   @override
-  String toString() {
-    return 'Episode(id: $id, name: $name, airDate: $airDate, episode: $episode, characters: $characters, url: $url, created: $created)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Results(id: $id, name: $name, airDate: $airDate, episode: $episode, characters: $characters, url: $url, created: $created)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Results'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('airDate', airDate))
+      ..add(DiagnosticsProperty('episode', episode))
+      ..add(DiagnosticsProperty('characters', characters))
+      ..add(DiagnosticsProperty('url', url))
+      ..add(DiagnosticsProperty('created', created));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Episode &&
+            other is _$_Results &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.airDate, airDate) || other.airDate == airDate) &&
@@ -235,28 +618,28 @@ class _$_Episode implements _Episode {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EpisodeCopyWith<_$_Episode> get copyWith =>
-      __$$_EpisodeCopyWithImpl<_$_Episode>(this, _$identity);
+  _$$_ResultsCopyWith<_$_Results> get copyWith =>
+      __$$_ResultsCopyWithImpl<_$_Results>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_EpisodeToJson(
+    return _$$_ResultsToJson(
       this,
     );
   }
 }
 
-abstract class _Episode implements Episode {
-  const factory _Episode(
+abstract class _Results implements Results {
+  const factory _Results(
       {required final int id,
       required final String name,
       required final String airDate,
       required final String episode,
       required final List<String> characters,
       required final String url,
-      required final DateTime created}) = _$_Episode;
+      required final DateTime created}) = _$_Results;
 
-  factory _Episode.fromJson(Map<String, dynamic> json) = _$_Episode.fromJson;
+  factory _Results.fromJson(Map<String, dynamic> json) = _$_Results.fromJson;
 
   @override
   int get id;
@@ -274,6 +657,6 @@ abstract class _Episode implements Episode {
   DateTime get created;
   @override
   @JsonKey(ignore: true)
-  _$$_EpisodeCopyWith<_$_Episode> get copyWith =>
+  _$$_ResultsCopyWith<_$_Results> get copyWith =>
       throw _privateConstructorUsedError;
 }

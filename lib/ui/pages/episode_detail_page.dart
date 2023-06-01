@@ -2,32 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../../data/models/episode.dart';
 
-class EpisodeDetailPage extends StatelessWidget {
-  final Episode episode;
+class EpisodeDetail extends StatelessWidget {
+  final Results result;
 
-  const EpisodeDetailPage({required this.episode, Key? key}) : super(key: key);
+  const EpisodeDetail({Key? key, required this.result}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detalle del episodio'),
+        title: Text(result.name),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('ID: ${episode.id}'),
-            Text('Name: ${episode.name}'),
-            Text('Air Date: ${episode.airDate}'),
-            Text('Episode: ${episode.episode}'),
-            Text('Characters: ${episode.characters.join(", ")}'),
-            Text('URL: ${episode.url}'),
-            Text('Created: ${episode.created}'),
-          ],
-        ),
-      ),
+      body: Text(result.name),
     );
   }
 }
+
+
+//si lo hago directamente tengo q hacer statefull
+
+

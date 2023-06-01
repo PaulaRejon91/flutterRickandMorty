@@ -1,22 +1,23 @@
 // ignore_for_file: unused_field
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rickandmorty/ui/pages/episode_search_page.dart';
-import 'package:rickandmorty/ui/widgets/custom_list_tile.dart';
-import '../../bloc/character_bloc.dart';
-import '../../data/models/character.dart';
-import 'character_detail_pages.dart';
+import 'package:rickandmorty/ui/pages/episode_main_page.dart';
+import '../../bloc/episode_bloc.dart';
+import '../../data/models/episode.dart';
+import '../widgets/episode_custom_list_tile.dart';
+import 'episode_detail_page.dart';
+import 'home_page.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class EpisodeSearchPage extends StatefulWidget {
+  const EpisodeSearchPage({Key? key}) : super(key: key);
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  State<EpisodeSearchPage> createState() => _EpisodeSearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
-  late Character
-      _currentCharacter; //para almacenar toda la info sobre el total de páginas y personajes y devolverá el tipo de personaje, es decir, nuestro modelo.
+class _EpisodeSearchPageState extends State<EpisodeSearchPage> {
+  late Episode
+      _currentEpisode; //para almacenar toda la info sobre el total de páginas y personajes y devolverá el tipo de personaje, es decir, nuestro modelo.
   List<Results> _currentResults = []; //almacena matriz de personajes
 
   int _currentPage = 1; //para la paginación
@@ -26,21 +27,37 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     if (_currentResults.isEmpty) {
       context
-          .read<CharacterBloc>()
-          .add(const CharacterEvent.fetch(name: '', page: 1));
+          .read<EpisodeBloc>()
+          .add(const EpisodeEvent.fetch(name: '', page: 1));
     }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<CharacterBloc>().state;
+    final state = context.watch<EpisodeBloc>().state;
 
     return Material(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          AppBar(
+            backgroundColor: Colors.grey,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(
+                      title: 'Rick and Morty',
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
           Padding(
             padding:
                 const EdgeInsets.only(top: 15, bottom: 1, left: 16, right: 16),
@@ -55,29 +72,23 @@ class _SearchPageState extends State<SearchPage> {
                   borderSide: BorderSide.none,
                 ),
                 prefixIcon: const Icon(Icons.search, color: Colors.white),
-                hintText: 'Search Name',
+                hintText: 'Search Episode',
                 hintStyle: const TextStyle(color: Colors.white),
               ),
               onChanged: (value) {
-                //buscar personaje:
+                //buscar episodio:
                 _currentPage = 1; //empezamos desde la 1ª pag.
                 _currentResults = [];
                 _currentSearchStr = value;
 
                 context
-                    .read<CharacterBloc>()
-                    .add(CharacterEvent.fetch(name: value, page: 1));
+                    .read<EpisodeBloc>()
+                    .add(EpisodeEvent.fetch(name: value, page: 1));
               },
             ),
           ),
-          // const Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 16),
-          //   child: DropDownButton(
-          //     selectedIndex: 0,
-          //   ),
-          // ),
 
-          //envuelvo con widget:
+          // envuelvo con widget:
           Expanded(
             child: state.when(
               loading: () {
@@ -92,9 +103,9 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 );
               },
-              loaded: (characterLoaded) {
-                _currentCharacter = characterLoaded;
-                _currentResults = _currentCharacter.results;
+              loaded: (episodeLoaded) {
+                _currentEpisode = episodeLoaded;
+                _currentResults = _currentEpisode.results;
                 return _currentResults.isNotEmpty
                     ? _customListView(_currentResults)
                     : const SizedBox(
@@ -103,21 +114,6 @@ class _SearchPageState extends State<SearchPage> {
               },
               error: () => const Text('Nothing found...'),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const EpisodeSearchPage(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              // ignore: deprecated_member_use
-              primary: Colors
-                  .green, // Establecer el color de fondo del botón a verde
-            ),
-            child: const Text('Go to Episode Main Page'),
           ),
         ],
       ),
@@ -140,11 +136,11 @@ class _SearchPageState extends State<SearchPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CharacterDetail(result: result),
+                  builder: (context) => EpisodeDetail(result: result),
                 ),
               );
             },
-            child: CustomListTile(result: result),
+            child: EpisodeCustomListTile(result: result),
           ),
         );
       },

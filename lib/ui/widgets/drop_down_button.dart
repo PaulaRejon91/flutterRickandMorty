@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rickandmorty/ui/pages/episode_main_page.dart';
-
 import '../../bloc/episodeList_bloc.dart';
-
-import '../pages/episode_list_page.dart';
 
 const List<String> list = <String>[
   'Season 1',
@@ -93,13 +89,22 @@ class _DropDownButtonState extends State<DropDownButton> {
         });
         switch (widget.selectedIndex) {
           case 0:
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    EpisodeMainPage(episodeIntList: season1List),
-              ),
-            );
+            context
+                .read<EpisodeListBloc>()
+                .add(EpisodeListEvent.fetch(episodeList: season1List));
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) =>
+            //         EpisodeMainPage(episodeIntList: season1List),
+            //   ),
+            // );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => EpisodeMainPage(),
+            //   ),
+            // );
             break;
           case 1:
             context
