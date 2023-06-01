@@ -3,7 +3,6 @@ import 'dart:convert';
 import '../models/character.dart';
 import 'package:http/http.dart' as http;
 import '../models/episode.dart';
-import '../models/episodeList.dart';
 
 class Repository {
   final url = 'https://rickandmortyapi.com/api/';
@@ -22,25 +21,8 @@ class Repository {
     try {
       var response =
           await http.get(Uri.parse('${url}episode?page=$page&name=$name'));
-      print('1=${response.body}');
       var jsonResult = json.decode(response.body);
-      print('2=${jsonResult}');
-      var response2 = Episode.fromJson(jsonResult);
-      print('3=${response2}');
       return Episode.fromJson(jsonResult);
-    } catch (e) {
-      print(e);
-      throw Exception(e.toString());
-    }
-  }
-
-  Future<EpisodeList> getCharactersBySeason(List<int> episodes) async {
-    try {
-      var response =
-          await http.get(Uri.parse('${url}episode/${episodes.join(",")}'));
-      var jsonResult = json.decode(response.body);
-
-      return EpisodeList.fromJson({'episodeList': jsonResult});
     } catch (e) {
       throw Exception(e.toString());
     }

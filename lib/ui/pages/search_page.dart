@@ -1,4 +1,6 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, deprecated_member_use
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/ui/pages/episode_search_page.dart';
@@ -104,6 +106,7 @@ class _SearchPageState extends State<SearchPage> {
               error: () => const Text('Nothing found...'),
             ),
           ),
+
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).push(
@@ -113,11 +116,16 @@ class _SearchPageState extends State<SearchPage> {
               );
             },
             style: ElevatedButton.styleFrom(
-              // ignore: deprecated_member_use
-              primary: Colors
-                  .green, // Establecer el color de fondo del botón a verde
+              primary: Colors.green,
             ),
             child: const Text('Go to Episode Main Page'),
+          ),
+          ElevatedButton(
+            onPressed: _showRandomCharacter,
+            style: ElevatedButton.styleFrom(
+              primary: Colors.green,
+            ),
+            child: const Text('Random Character'),
           ),
         ],
       ),
@@ -136,7 +144,6 @@ class _SearchPageState extends State<SearchPage> {
               const EdgeInsets.only(right: 16, left: 16, top: 3, bottom: 3),
           child: GestureDetector(
             onTap: () {
-              //esto deberia ser un evento:
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -148,6 +155,19 @@ class _SearchPageState extends State<SearchPage> {
           ),
         );
       },
+    );
+  }
+
+  void _showRandomCharacter() {
+    final random = Random();
+    final randomIndex = random.nextInt(_currentResults.length);
+    final randomCharacter = _currentResults[randomIndex];
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CharacterDetail(result: randomCharacter),
+      ),
     );
   }
 }
