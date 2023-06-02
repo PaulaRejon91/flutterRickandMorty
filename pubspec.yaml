@@ -44,6 +44,8 @@ dependencies:
   firebase_database: ^10.2.2
   analytics: ^1.0.2
   firebase: ^9.0.3
+  image_picker: ^0.8.7+5
+  url_launcher: ^6.1.11
 
 
 dev_dependencies:

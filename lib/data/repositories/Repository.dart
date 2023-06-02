@@ -17,6 +17,16 @@ class Repository {
     }
   }
 
+  Future<Character> getCharacterById(int id) async {
+    try {
+      var response = await http.get(Uri.parse('${url}character/$id'));
+      var jsonResult = json.decode(response.body);
+      return Character.fromJson(jsonResult);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
   Future<Episode> getEpisode(int page, String name) async {
     try {
       var response =

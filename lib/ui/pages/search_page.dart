@@ -1,9 +1,9 @@
 // ignore_for_file: unused_field, deprecated_member_use
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/ui/pages/episode_search_page.dart';
+import 'package:rickandmorty/ui/pages/favorites_page.dart';
 import 'package:rickandmorty/ui/widgets/custom_list_tile.dart';
 import '../../bloc/character_bloc.dart';
 import '../../data/models/character.dart';
@@ -17,11 +17,9 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  late Character
-      _currentCharacter; //para almacenar toda la info sobre el total de páginas y personajes y devolverá el tipo de personaje, es decir, nuestro modelo.
-  List<Results> _currentResults = []; //almacena matriz de personajes
-
-  int _currentPage = 1; //para la paginación
+  late Character _currentCharacter;
+  List<Results> _currentResults = [];
+  int _currentPage = 1;
   String _currentSearchStr = '';
 
   @override
@@ -38,8 +36,13 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     final state = context.watch<CharacterBloc>().state;
 
-    return Material(
-      child: Column(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: const Text('Rick and Morty'),
+        backgroundColor: Colors.grey,
+      ),
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -61,8 +64,7 @@ class _SearchPageState extends State<SearchPage> {
                 hintStyle: const TextStyle(color: Colors.white),
               ),
               onChanged: (value) {
-                //buscar personaje:
-                _currentPage = 1; //empezamos desde la 1ª pag.
+                _currentPage = 1;
                 _currentResults = [];
                 _currentSearchStr = value;
 
@@ -72,14 +74,47 @@ class _SearchPageState extends State<SearchPage> {
               },
             ),
           ),
-          // const Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 16),
-          //   child: DropDownButton(
-          //     selectedIndex: 0,
-          //   ),
-          // ),
-
-          //envuelvo con widget:
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const EpisodeSearchPage(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(primary: Colors.green),
+                child: const Text(
+                  'Episodes',
+                  style: TextStyle(fontSize: 17),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const FavoritesPage(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(primary: Colors.green),
+                child: const Text(
+                  'Favorites',
+                  style: TextStyle(fontSize: 17),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: _showRandomCharacter,
+                style: ElevatedButton.styleFrom(primary: Colors.green),
+                child: const Text(
+                  'Random Character',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ],
+          ),
           Expanded(
             child: state.when(
               loading: () {
@@ -99,33 +134,10 @@ class _SearchPageState extends State<SearchPage> {
                 _currentResults = _currentCharacter.results;
                 return _currentResults.isNotEmpty
                     ? _customListView(_currentResults)
-                    : const SizedBox(
-                        height: 10,
-                      );
+                    : const SizedBox(height: 10);
               },
               error: () => const Text('Nothing found...'),
             ),
-          ),
-
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const EpisodeSearchPage(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Colors.green,
-            ),
-            child: const Text('Go to Episode Main Page'),
-          ),
-          ElevatedButton(
-            onPressed: _showRandomCharacter,
-            style: ElevatedButton.styleFrom(
-              primary: Colors.green,
-            ),
-            child: const Text('Random Character'),
           ),
         ],
       ),

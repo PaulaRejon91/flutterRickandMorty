@@ -36,31 +36,32 @@ class _EpisodeSearchPageState extends State<EpisodeSearchPage> {
   Widget build(BuildContext context) {
     final state = context.watch<EpisodeBloc>().state;
 
-    return Material(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          AppBar(
-            backgroundColor: Colors.grey,
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(
-                      title: 'Rick and Morty',
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.only(top: 15, bottom: 1, left: 16, right: 16),
-            child: TextField(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: const Text('Episodes'),
+        backgroundColor: Colors.grey,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(
+                  title: 'Rick and Morty',
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 15, bottom: 1, left: 16, right: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            TextField(
               style: const TextStyle(color: Colors.white),
               cursorColor: Colors.white,
               decoration: InputDecoration(
@@ -75,8 +76,7 @@ class _EpisodeSearchPageState extends State<EpisodeSearchPage> {
                 hintStyle: const TextStyle(color: Colors.white),
               ),
               onChanged: (value) {
-                //buscar episodio:
-                _currentPage = 1; //empezamos desde la 1ª pag.
+                _currentPage = 1;
                 _currentResults = [];
                 _currentSearchStr = value;
 
@@ -85,36 +85,34 @@ class _EpisodeSearchPageState extends State<EpisodeSearchPage> {
                     .add(EpisodeEvent.fetch(name: value, page: 1));
               },
             ),
-          ),
-
-          // envuelvo con widget:
-          Expanded(
-            child: state.when(
-              loading: () {
-                return const Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(strokeWidth: 2),
-                      SizedBox(width: 10),
-                      Text('Loading...'),
-                    ],
-                  ),
-                );
-              },
-              loaded: (episodeLoaded) {
-                _currentEpisode = episodeLoaded;
-                _currentResults = _currentEpisode.results;
-                return _currentResults.isNotEmpty
-                    ? _customListView(_currentResults)
-                    : const SizedBox(
-                        height: 10,
-                      );
-              },
-              error: () => const Text('Nothing found...'),
+            Expanded(
+              child: state.when(
+                loading: () {
+                  return const Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(strokeWidth: 2),
+                        SizedBox(width: 10),
+                        Text('Loading...'),
+                      ],
+                    ),
+                  );
+                },
+                loaded: (episodeLoaded) {
+                  _currentEpisode = episodeLoaded;
+                  _currentResults = _currentEpisode.results;
+                  return _currentResults.isNotEmpty
+                      ? _customListView(_currentResults)
+                      : const SizedBox(
+                          height: 10,
+                        );
+                },
+                error: () => const Text('Nothing found...'),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
