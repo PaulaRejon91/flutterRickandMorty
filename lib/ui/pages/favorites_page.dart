@@ -18,7 +18,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text('Favorites'),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.green,
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -86,6 +86,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
                             ),
                             Text(
                               favorite['species'],
+                              style: const TextStyle(
+                                  fontSize:
+                                      16), // Ajusta el tamaño del texto de la especie
+                            ),
+                            Text(
+                              favorite['status'],
                               style: const TextStyle(
                                   fontSize:
                                       16), // Ajusta el tamaño del texto de la especie

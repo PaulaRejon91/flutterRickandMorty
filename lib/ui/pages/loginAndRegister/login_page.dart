@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/routes.dart';
@@ -32,66 +31,88 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    var sizedBox = const SizedBox(height: 20);
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: Column(
-        children: [
-          TextField(
-            controller: _email,
-            enableSuggestions: false,
-            autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              hintText: 'Enter your email here',
+      appBar: AppBar(
+        title: const Text('Login'),
+        backgroundColor: Colors.green,
+      ),
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            sizedBox,
+            Image.asset('assets/images/ram.jpg'),
+            const SizedBox(height: 20),
+            Container(
+              color: Colors.white,
+              child: TextField(
+                controller: _email,
+                enableSuggestions: false,
+                autocorrect: false,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  hintText: 'Enter your email here',
+                ),
+              ),
             ),
-          ),
-          TextField(
-            controller: _password,
-            obscureText: true,
-            enableSuggestions: false,
-            autocorrect: false,
-            decoration: const InputDecoration(
-              hintText: 'Enteryour password here',
+            const SizedBox(height: 10),
+            Container(
+              color: Colors.white,
+              child: TextField(
+                controller: _password,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: const InputDecoration(
+                  hintText: 'Enter your password here',
+                ),
+              ),
             ),
-          ),
-          TextButton(
-            onPressed: () async {
-              final email = _email.text;
-              final password = _password.text;
-              try {
-                await AuthService.firebase().logIn(
-                  email: email,
-                  password: password,
-                );
-                final user = AuthService.firebase().currentUser;
-                if (user?.isEmailVerified ?? false) {
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil(searchRoute, (route) => false);
-                } else {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      verifyEmailRoute, (route) => false);
+            const SizedBox(height: 10),
+            TextButton(
+              onPressed: () async {
+                final email = _email.text;
+                final password = _password.text;
+                try {
+                  await AuthService.firebase().logIn(
+                    email: email,
+                    password: password,
+                  );
+                  final user = AuthService.firebase().currentUser;
+                  if (user?.isEmailVerified ?? false) {
+                    // ignore: use_build_context_synchronously
+                    Navigator.of(context)
+                        .pushNamedAndRemoveUntil(searchRoute, (route) => false);
+                  } else {
+                    // ignore: use_build_context_synchronously
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        verifyEmailRoute, (route) => false);
+                  }
+                } on UserNotFoundAuthException {
+                  await showErrorDialog(context, 'User not found');
+                } on WrongPasswordAuthException {
+                  await showErrorDialog(context, 'Wrong password');
+                } on GenericAuthException {
+                  await showErrorDialog(
+                    context,
+                    'Authentication error',
+                  );
                 }
-              } on UserNotFoundAuthException {
-                await showErrorDialog(context, 'User not found');
-              } on WrongPasswordAuthException {
-                await showErrorDialog(context, 'Wrong password');
-              } on GenericAuthException {
-                await showErrorDialog(
-                  context,
-                  'Authentication error',
-                );
-              }
-            },
-            child: const Text('Login'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil(registerRoute, (route) => false);
-            },
-            child: const Text('Not registred yet? Registrer here!'),
-          )
-        ],
+              },
+              child: const Text('Login',
+                  style: TextStyle(fontSize: 18, color: Colors.green)),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil(registerRoute, (route) => false);
+              },
+              child: const Text('Not registered yet? Register here!',
+                  style: TextStyle(fontSize: 18, color: Colors.green)),
+            )
+          ],
+        ),
       ),
     );
   }

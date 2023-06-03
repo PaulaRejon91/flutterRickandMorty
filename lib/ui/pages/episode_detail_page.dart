@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import '../../data/models/episode.dart';
 
 class EpisodeDetail extends StatelessWidget {
-  final Results result;
+  final Results resultEpisode;
 
-  const EpisodeDetail({Key? key, required this.result}) : super(key: key);
+  const EpisodeDetail({Key? key, required this.resultEpisode})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.green,
         title: Text(
-          result.name,
+          resultEpisode.name,
           style: const TextStyle(fontSize: 25),
         ),
       ),
@@ -23,7 +24,7 @@ class EpisodeDetail extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Episode: ${result.episode}',
+              'Episode: ${resultEpisode.episode}',
               style: const TextStyle(
                 fontSize: 27.0,
                 fontWeight: FontWeight.bold,
@@ -32,7 +33,7 @@ class EpisodeDetail extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             Text(
-              'Air Date: ${result.airDate}',
+              'Air Date: ${resultEpisode.airDate}',
               style: const TextStyle(
                 fontSize: 20.0,
                 color: Colors.black,
@@ -50,9 +51,9 @@ class EpisodeDetail extends StatelessWidget {
             const SizedBox(height: 8.0),
             Expanded(
               child: ListView.builder(
-                itemCount: result.characters.length,
+                itemCount: resultEpisode.characters.length,
                 itemBuilder: (context, index) {
-                  final character = result.characters[index];
+                  final character = resultEpisode.characters[index];
                   return Text(
                     character,
                     style: const TextStyle(
@@ -65,7 +66,7 @@ class EpisodeDetail extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             Text(
-              'Created: ${result.created.toString()}',
+              'Created: ${resultEpisode.created.toString()}',
               style: const TextStyle(
                 fontSize: 20.0,
                 color: Colors.black,
@@ -84,8 +85,3 @@ class EpisodeDetail extends StatelessWidget {
     );
   }
 }
-
-
-//si lo hago directamente tengo q hacer statefull
-
-

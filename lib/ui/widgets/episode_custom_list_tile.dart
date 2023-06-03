@@ -16,109 +16,40 @@ class EpisodeCustomListTile extends StatelessWidget {
       child: Container(
         height: MediaQuery.of(context).size.height / 9,
         color: const Color.fromRGBO(86, 86, 86, 0.8), //GRIS,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: SizedBox(
+            //width: MediaQuery.of(context).size.width / 2,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
-                  child: Text(
-                    result.name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: Colors.black, fontSize: 18),
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: SizedBox(
-                        //width: MediaQuery.of(context).size.width / 2,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Name: ',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                          color: Colors.white, fontSize: 16),
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  result.name,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                          color: Colors.white, fontSize: 12),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                    Text(
+                      'Nº  ',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(color: Colors.white, fontSize: 16),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: SizedBox(
-                        //width: MediaQuery.of(context).size.width / 2,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Episode: ',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                          color: Colors.white, fontSize: 16),
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  result.episode,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                          color: Colors.white, fontSize: 12),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 20),
-                          ],
-                        ),
-                      ),
+                    const SizedBox(height: 2),
+                    Text(
+                      result.episode,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(color: Colors.white, fontSize: 12),
                     ),
                   ],
                 ),
+                const SizedBox(width: 20),
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );

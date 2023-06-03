@@ -70,6 +70,7 @@ class _CharacterDetailState extends State<CharacterDetail> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.result.name),
+        backgroundColor: Colors.green,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -113,7 +114,7 @@ class _CharacterDetailState extends State<CharacterDetail> {
             GestureDetector(
               onTap: favorite,
               child: Padding(
-                padding: const EdgeInsets.only(right: 16),
+                padding: const EdgeInsets.only(right: 16, top: 18),
                 child: Icon(
                   Icons.favorite,
                   size: 40,

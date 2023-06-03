@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/bloc/episode_bloc.dart';
-import 'package:rickandmorty/ui/pages/favorites_page.dart';
 import 'package:rickandmorty/ui/pages/home_page.dart';
 import 'package:rickandmorty/ui/pages/loginAndRegister/login_page.dart';
 import 'package:rickandmorty/ui/pages/loginAndRegister/register_page.dart';

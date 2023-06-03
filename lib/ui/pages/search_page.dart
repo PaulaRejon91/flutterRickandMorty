@@ -40,7 +40,7 @@ class _SearchPageState extends State<SearchPage> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text('Rick and Morty'),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.green,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

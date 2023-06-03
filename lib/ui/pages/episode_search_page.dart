@@ -40,7 +40,7 @@ class _EpisodeSearchPageState extends State<EpisodeSearchPage> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text('Episodes'),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.green,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -133,7 +133,7 @@ class _EpisodeSearchPageState extends State<EpisodeSearchPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => EpisodeDetail(result: result),
+                  builder: (context) => EpisodeDetail(resultEpisode: result),
                 ),
               );
             },
