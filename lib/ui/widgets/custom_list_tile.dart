@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rickandmorty/data/models/character.dart';
-import 'package:rickandmorty/ui/widgets/character_fav.dart';
 import 'package:rickandmorty/ui/widgets/character_status.dart';
 
 class CustomListTile extends StatelessWidget {

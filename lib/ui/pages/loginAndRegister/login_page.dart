@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rickandmorty/ui/pages/loginAndRegister/show_error_dialog.dart';
 
 import '../../../constants/routes.dart';
 import '../../../service/auth/auth_exceptions.dart';
@@ -117,5 +118,5 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  showErrorDialog(BuildContext context, String s) {}
+  // showErrorDialog(BuildContext context, String s) {}
 }

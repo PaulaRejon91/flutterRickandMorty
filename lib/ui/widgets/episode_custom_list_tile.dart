@@ -9,22 +9,20 @@ class EpisodeCustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //tamaño de la pantalla: Puedes obtener el tamaño de la pantalla actual utilizando MediaQuery.of(context).size. Esto devuelve un objeto Size que contiene las dimensiones de la pantalla, como el ancho y el alto.
     return ClipRRect(
       //Cuando se envuelve un widget con ClipRect, el contenido del widget hijo se ajusta al rectángulo especificado y cualquier parte que se extienda más allá de ese rectángulo se recorta y no se muestra en la interfaz de usuario.
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        height: MediaQuery.of(context).size.height / 9,
+        height: MediaQuery.of(context).size.height / 19,
         color: const Color.fromRGBO(86, 86, 86, 0.8), //GRIS,
         child: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: SizedBox(
-            //width: MediaQuery.of(context).size.width / 2,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -33,11 +31,19 @@ class EpisodeCustomListTile extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium
-                          ?.copyWith(color: Colors.white, fontSize: 16),
+                          ?.copyWith(color: Colors.white, fontSize: 12),
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      result.episode,
+                      '${result.episode}   ',
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(color: Colors.white, fontSize: 12),
+                    ),
+                    Text(
+                      result.name,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context)
                           .textTheme

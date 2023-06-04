@@ -40,31 +40,31 @@ class EpisodeDetail extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16.0),
-            const Text(
-              'Characters:',
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            Expanded(
-              child: ListView.builder(
-                itemCount: resultEpisode.characters.length,
-                itemBuilder: (context, index) {
-                  final character = resultEpisode.characters[index];
-                  return Text(
-                    character,
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.black,
-                    ),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 16.0),
+            // const Text(
+            //   'Characters:',
+            //   style: TextStyle(
+            //     fontSize: 20.0,
+            //     fontWeight: FontWeight.bold,
+            //     color: Colors.black,
+            //   ),
+            // ),
+            // const SizedBox(height: 8.0),
+            // Expanded(
+            //   child: ListView.builder(
+            //     itemCount: resultEpisode.characters.length,
+            //     itemBuilder: (context, index) {
+            //       final character = resultEpisode.characters[index];
+            //       return Text(
+            //         character,
+            //         style: const TextStyle(
+            //           fontSize: 16.0,
+            //           color: Colors.black,
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // ),
+            // const SizedBox(height: 16.0),
             Text(
               'Created: ${resultEpisode.created.toString()}',
               style: const TextStyle(

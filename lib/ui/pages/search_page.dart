@@ -1,11 +1,13 @@
 // ignore_for_file: unused_field, deprecated_member_use
 import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/ui/pages/episode_search_page.dart';
 import 'package:rickandmorty/ui/pages/favorites_page.dart';
 import 'package:rickandmorty/ui/widgets/custom_list_tile.dart';
 import '../../bloc/character_bloc.dart';
+import '../../constants/routes.dart';
 import '../../data/models/character.dart';
 import 'character_detail_pages.dart';
 
@@ -21,6 +23,12 @@ class _SearchPageState extends State<SearchPage> {
   List<Results> _currentResults = [];
   int _currentPage = 1;
   String _currentSearchStr = '';
+
+  void _logout() async {
+    await FirebaseAuth.instance.signOut();
+    // ignore: use_build_context_synchronously
+    Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (_) => false);
+  }
 
   @override
   void initState() {
@@ -41,6 +49,12 @@ class _SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         title: const Text('Rick and Morty'),
         backgroundColor: Colors.green,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: _logout,
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

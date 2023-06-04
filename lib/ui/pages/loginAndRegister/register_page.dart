@@ -76,11 +76,12 @@ class _RegisterViewState extends State<RegisterView> {
                 final email = _email.text;
                 final password = _password.text;
                 try {
-                  AuthService.firebase().createUser(
+                  await AuthService.firebase().createUser(
                     email: email,
                     password: password,
                   );
                   AuthService.firebase().sendEmailVerification();
+                  // ignore: use_build_context_synchronously
                   Navigator.of(context).pushNamed(verifyEmailRoute);
                 } on EmailAlreadyInUseAuthException {
                   await showErrorDialog(

@@ -29,7 +29,7 @@ class CharacterStatus extends StatelessWidget {
               : liveState == LiveState.alive
                   ? 'Alive'
                   : 'Unknown',
-          style: Theme.of(context).textTheme.bodySmall,
+          style: const TextStyle(color: Colors.white, fontSize: 14),
         ),
       ],
     );
