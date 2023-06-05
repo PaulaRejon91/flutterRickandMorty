@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/ui/pages/episode_search_page.dart';
 import 'package:rickandmorty/ui/pages/favorites_page.dart';
+import 'package:rickandmorty/ui/pages/video_page.dart';
 import 'package:rickandmorty/ui/widgets/custom_list_tile.dart';
 import '../../bloc/character_bloc.dart';
 import '../../constants/routes.dart';
@@ -54,6 +55,16 @@ class _SearchPageState extends State<SearchPage> {
             icon: const Icon(Icons.logout),
             onPressed: _logout,
           ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => VideoPage(),
+                  ));
+            },
+            icon: const Icon(Icons.sentiment_satisfied),
+          )
         ],
       ),
       body: Column(
