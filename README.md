@@ -1,6 +1,22 @@
-# rickandmorty
+## Flutter Mobile App Project
 
-A new Flutter project.
+## Description
+This project is a mobile application developed with **Flutter** and **Dart** language. The app allows data management through local databases and queries to a Web API. It has been integrated **Firebase**, **SQLite** for local storage and **Git** for version control, in addition to the integration of **external APIs**.
+
+## Technologies Used
+✔ Flutter
+✔ Dart
+✔ Firebase
+✔ SQLite
+✔ Git
+
+## Functionalities.
+✔ Local data management with SQLite.  
+✔ External API query.  
+✔ Authentication and data analysis with Firebase.  
+✔ Responsive and cross-platform user interface.
+✔ Version control with Git.
+✔ Responsive and cross platform user interface.
 
 ## Getting Started
 
